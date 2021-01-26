@@ -1,0 +1,96 @@
+{
+  "name": "@r2u/react-ar-components",
+  "version": "4.8.9",
+  "main": "dist/lib.min.js",
+  "types": "dist/lib.min.d.ts",
+  "repository": "https://github.com/r2u-io/react-ar-components",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "rollup -c",
+    "build-app": "webpack --mode development",
+    "dev": "webpack-dev-server --mode development --host 0.0.0.0",
+    "test-default": "cypress run --headless --browser chrome --config-file 'cypress/config.json'",
+    "test-instagram": "cypress run --headless --browser chrome --config-file 'cypress/config-instagram.json'",
+    "test": "yarn test-default && yarn test-instagram",
+    "prettier": "prettier --write src",
+    "lint": "eslint 'src/**/*.{ts,tsx}' --max-warnings=0 -c .eslintrc.js",
+    "deploy-config": "git config user.email \"bot@r2u.io\" && git config user.name \"R2U Bot\"",
+    "deploy-checkout": "git checkout -b $(jq -r \".version\" package.json)",
+    "deploy-add": "git add -f ./dist/",
+    "deploy-commit": "git commit -m $(jq -r \".version\" package.json)",
+    "deploy-push": "git push origin $(jq -r \".version\" package.json)",
+    "deploy": "yarn deploy-config && yarn deploy-checkout && yarn deploy-add && yarn deploy-commit && yarn deploy-push"
+  },
+  "peerDependencies": {
+    "@google/model-viewer": "^1.3.0"
+  },
+  "dependencies": {
+    "@google/model-viewer": "^1.4.1",
+    "@types/qrcode.react": "^1.0.1",
+    "@types/webxr": "^0.2.1",
+    "is_js": "^0.9.0",
+    "qrcode.react": "^1.0.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-icons": "^4.1.0",
+    "react-scripts": "^3.4.3",
+    "styled-components": "^5.2.0",
+    "three": "^0.124.0",
+    "typescript": "^4.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-transform-react-jsx": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "@types/is": "^0.0.21",
+    "@types/react": "^16.9.49",
+    "@types/react-dom": "^16.9.8",
+    "@types/styled-components": "^5.1.3",
+    "@typescript-eslint/eslint-plugin": "^4.1.1",
+    "@typescript-eslint/parser": "^4.1.1",
+    "@wessberg/rollup-plugin-ts": "^1.3.4",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "cypress": "^5.2.0",
+    "cypress-react-selector": "^2.0.3",
+    "eslint": "^7.9.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-plugin-cypress": "^2.11.1",
+    "eslint-plugin-flowtype": "^5.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "file-loader": "^6.1.0",
+    "prettier": "^2.1.2",
+    "rollup": "^2.27.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-img": "^1.1.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
